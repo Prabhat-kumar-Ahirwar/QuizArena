@@ -40,4 +40,8 @@ public class QuestionController {
         service.delete(id);
         return "Deleted successfully";
     }
+    @GetMapping("/search")
+    public List<Question> search(@RequestParam String keyword) {
+        return service.search(keyword);
+    }
 }

@@ -42,4 +42,8 @@ public class QuestionService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+
+    public List<Question> search(String keyword) {
+        return repo.findByQuestionTextContainingIgnoreCase(keyword);
+    }
 }
