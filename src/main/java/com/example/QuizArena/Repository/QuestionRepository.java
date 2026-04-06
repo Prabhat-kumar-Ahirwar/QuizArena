@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findByQuestionTextContainingIgnoreCase(String keyword);
+
+    List<Question> findByDifficultyLevelIgnoreCase(String level);
 }

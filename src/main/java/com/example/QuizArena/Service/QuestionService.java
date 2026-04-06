@@ -46,4 +46,8 @@ public class QuestionService {
     public List<Question> search(String keyword) {
         return repo.findByQuestionTextContainingIgnoreCase(keyword);
     }
+
+    public List<Question> getByDifficulty(String level) {
+        return repo.findByDifficultyLevelIgnoreCase(level);
+    }
 }

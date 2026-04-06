@@ -44,4 +44,8 @@ public class QuestionController {
     public List<Question> search(@RequestParam String keyword) {
         return service.search(keyword);
     }
+    @GetMapping("/difficulty/{level}")
+    public List<Question> getByDifficulty(@PathVariable String level) {
+        return service.getByDifficulty(level);
+    }
 }
