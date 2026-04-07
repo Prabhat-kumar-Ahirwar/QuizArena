@@ -3,6 +3,8 @@ package com.example.QuizArena.Service;
 import com.example.QuizArena.Model.Question;
 import com.example.QuizArena.Repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +19,8 @@ public class QuestionService {
         return repo.save(q);
     }
 
-    public List<Question> getAll() {
-        return repo.findAll();
+    public Page<Question> getAll(Pageable pageable) {
+        return repo.findAll(pageable);
     }
 
     public Question getById(Long id) {

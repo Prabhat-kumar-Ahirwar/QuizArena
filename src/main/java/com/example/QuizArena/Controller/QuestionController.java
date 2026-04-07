@@ -3,6 +3,8 @@ package com.example.QuizArena.Controller;
 import com.example.QuizArena.Model.Question;
 import com.example.QuizArena.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +23,9 @@ public class QuestionController {
     }
 
     @GetMapping
-    public List<Question> getAll() {
-        return service.getAll();
+    public Page<Question> getAll(Pageable pageable) {
+        return service.getAll(pageable);
     }
-
     @GetMapping("/{id}")
     public Question getById(@PathVariable Long id) {
         return service.getById(id);
