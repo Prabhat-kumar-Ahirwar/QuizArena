@@ -45,11 +45,11 @@ public class QuestionService {
         repo.deleteById(id);
     }
 
-    public List<Question> search(String keyword) {
-        return repo.findByQuestionTextContainingIgnoreCase(keyword);
-    }
 
     public List<Question> getByDifficulty(String level) {
         return repo.findByDifficultyLevelIgnoreCase(level);
+    }
+    public Page<Question> search(String keyword, Pageable pageable) {
+        return repo.findByKeyword(keyword, pageable);
     }
 }

@@ -4,6 +4,7 @@ import com.example.QuizArena.Model.Question;
 import com.example.QuizArena.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -42,8 +43,13 @@ public class QuestionController {
         return "Deleted successfully";
     }
     @GetMapping("/search")
-    public List<Question> search(@RequestParam String keyword) {
-        return service.search(keyword);
+    public Page<Question> search(
+            @RequestParam String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return service.search(keyword, pageable);
     }
     @GetMapping("/difficulty/{level}")
     public List<Question> getByDifficulty(@PathVariable String level) {
