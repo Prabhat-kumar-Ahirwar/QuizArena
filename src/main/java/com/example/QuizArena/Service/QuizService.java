@@ -5,6 +5,8 @@ import com.example.QuizArena.Model.Quiz;
 import com.example.QuizArena.Repository.QuestionRepository;
 import com.example.QuizArena.Repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +30,8 @@ public class QuizService {
         return quizRepo.save(quiz);
     }
 
-    public List<Quiz> getAll() {
-        return quizRepo.findAll();
+    public Page<Quiz> getAll(Pageable pageable) {
+        return quizRepo.findAll(pageable);
     }
 
     public Quiz getById(Long id) {

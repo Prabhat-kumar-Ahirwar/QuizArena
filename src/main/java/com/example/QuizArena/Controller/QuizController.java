@@ -3,6 +3,8 @@ package com.example.QuizArena.Controller;
 import com.example.QuizArena.Model.Quiz;
 import com.example.QuizArena.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +23,8 @@ public class QuizController {
     }
 
     @GetMapping
-    public List<Quiz> getAll() {
-        return service.getAll();
+    public Page<Quiz> getAll(Pageable pageable) {
+        return service.getAll(pageable);
     }
 
     @GetMapping("/{id}")
@@ -40,4 +42,5 @@ public class QuizController {
         service.delete(id);
         return "Deleted successfully";
     }
+
 }
